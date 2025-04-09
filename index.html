@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yagame - Desenvolvedor & Gamer</title>
+    <meta name="description" content="Portfólio digital de Yagame - Desenvolvedor e Gamer desde 2017" />
+    <meta name="author" content="Yagame" />
+
+    <meta property="og:title" content="Yagame - Desenvolvedor & Gamer" />
+    <meta property="og:description" content="Portfólio digital de Yagame - Desenvolvedor e Gamer desde 2017" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://i.pinimg.com/736x/1c/2b/68/1c2b687c2f329a63a2130d370e129bf0.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@yagame" />
+    <meta name="twitter:image" content="https://i.pinimg.com/736x/1c/2b/68/1c2b687c2f329a63a2130d370e129bf0.jpg" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Base Tailwind-like styles */
+      :root {
+        --background: 225, 25%, 10%;
+        --foreground: 210, 40%, 98%;
+        --card: 228, 21%, 15%;
+        --card-foreground: 210, 40%, 98%;
+        --border: 228, 16%, 24%;
+        --gamer-neon: 196, 100%, 50%;
+        --gamer-purple: 266, 85%, 64%;
+        --gamer-dark: 225, 25%, 5%;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Orbitron', sans-serif;
+      }
+      
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        background-color: hsla(var(--background), 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid hsla(var(--border), 0.5);
+      }
+      
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
+      
+      /* Navigation */
+      nav ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      
+      nav a {
+        color: hsla(var(--foreground), 0.8);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      
+      nav a:hover {
+        color: hsl(var(--gamer-neon));
+      }
+      
+      /* Button */
+      .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      
+      .btn-outline {
+        background: transparent;
+        border: 1px solid hsl(var(--gamer-neon));
+        color: hsl(var(--gamer-neon));
+      }
+      
+      .btn-outline:hover {
+        background-color: hsla(var(--gamer-neon), 0.1);
+      }
+      
+      .btn-primary {
+        background-color: hsl(var(--gamer-neon));
+        border: 1px solid hsl(var(--gamer-neon));
+        color: black;
+      }
+      
+      .btn-primary:hover {
+        background-color: hsla(var(--gamer-neon), 0.8);
+      }
+      
+      /* Hero Section */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 5rem;
+      }
+      
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://i.gifer.com/TL80.gif');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+        z-index: -1;
+      }
+      
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, hsla(var(--background), 0.9), hsla(var(--background), 0.6), hsla(var(--background), 1));
+        z-index: -1;
+      }
+      
+      .hero-mesh {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(hsla(var(--gamer-neon), 0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
+        z-index: -1;
+      }
+      
+      .hero-content {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 3rem;
+        align-items: center;
+      }
+      
+      @media (min-width: 768px) {
+        .hero-content {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+      
+      .hero-text {
+        max-width: 500px;
+      }
+      
+      .gamer-gradient {
+        background: linear-gradient(90deg, hsl(var(--gamer-neon)) 0%, hsl(var(--gamer-purple)) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+      
+      .animate-pulse-glow {
+        animation: pulse-glow 3s infinite;
+      }
+      
+      @keyframes pulse-glow {
+        0%, 100% {
+          filter: drop-shadow(0 0 5px hsla(var(--gamer-neon), 0));
+        }
+        50% {
+          filter: drop-shadow(0 0 10px hsla(var(--gamer-neon), 0.5));
+        }
+      }
+      
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      
+      .profile-img {
+        position: relative;
+        width: 16rem;
+        height: 16rem;
+      }
+      
+      @media (min-width: 768px) {
+        .profile-img {
+          width: 20rem;
+          height: 20rem;
+        }
+      }
+      
+      .profile-img-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid hsl(var(--gamer-neon));
+        box-shadow: 0 0 8px hsla(var(--gamer-neon), 0.6);
+      }
+      
+      .profile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      /* Section Styles */
+      section {
+        padding: 5rem 0;
+        position: relative;
+      }
+      
+      .section-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3rem;
+      }
+      
+      .section-title-line {
+        height: 4px;
+        width: 6rem;
+        margin-top: 1rem;
+        background: linear-gradient(to right, hsl(var(--gamer-neon)), hsl(var(--gamer-purple)));
+      }
+      
+      /* Card Styles */
+      .card {
+        background-color: hsla(var(--card), 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid hsla(var(--gamer-neon), 0.2);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+      
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-color: hsl(var(--gamer-neon));
+      }
+      
+      /* Grid Layout */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+      }
+      
+      @media (min-width: 640px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      
+      /* Interest Card */
+      .interest-icon {
+        font-size: 2.5rem;
+        color: hsl(var(--gamer-neon));
+        margin-bottom: 1rem;
+      }
+      
+      /* Education Timeline */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 48rem;
+        margin: 0 auto;
+      }
+      
+      .timeline-connector {
+        display: flex;
+        justify-content: center;
+        height: 3rem;
+      }
+      
+      .timeline-connector-line {
+        height: 100%;
+        width: 4px;
+      }
+      
+      .icon-container {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+      }
+      
+      /* Footer */
+      footer {
+        background-color: hsl(var(--gamer-dark));
+        padding: 3rem 0;
+        border-top: 1px solid hsla(var(--gamer-neon), 0.2);
+      }
+      
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      @media (min-width: 768px) {
+        .footer-content {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+      }
+      
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      @media (min-width: 768px) {
+        .footer-links {
+          flex-direction: row;
+          gap: 3rem;
+        }
+      }
+      
+      .footer-copyright {
+        border-top: 1px solid hsla(var(--foreground), 0.1);
+        margin-top: 2rem;
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      
+      @media (min-width: 768px) {
+        .footer-copyright {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+      
+      /* Utility Classes */
+      .text-lg { font-size: 1.125rem; }
+      .text-xl { font-size: 1.25rem; }
+      .text-2xl { font-size: 1.5rem; }
+      .text-3xl { font-size: 1.875rem; }
+      .text-4xl { font-size: 2.25rem; }
+      .text-5xl { font-size: 3rem; }
+      .text-6xl { font-size: 3.75rem; }
+      .text-7xl { font-size: 4.5rem; }
+      
+      .font-bold { font-weight: 700; }
+      .font-semibold { font-weight: 600; }
+      
+      .mb-2 { margin-bottom: 0.5rem; }
+      .mb-3 { margin-bottom: 0.75rem; }
+      .mb-4 { margin-bottom: 1rem; }
+      .mb-6 { margin-bottom: 1.5rem; }
+      .mb-8 { margin-bottom: 2rem; }
+      .mb-12 { margin-bottom: 3rem; }
+      
+      .mt-2 { margin-top: 0.5rem; }
+      .mt-4 { margin-top: 1rem; }
+      .mt-8 { margin-top: 2rem; }
+      
+      .space-y-2 > * + * { margin-top: 0.5rem; }
+      .space-y-4 > * + * { margin-top: 1rem; }
+      .space-y-6 > * + * { margin-top: 1.5rem; }
+      
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .gap-2 { gap: 0.5rem; }
+      .gap-4 { gap: 1rem; }
+      .gap-6 { gap: 1.5rem; }
+      
+      .opacity-70 { opacity: 0.7; }
+      .opacity-50 { opacity: 0.5; }
+      
+      .hidden {
+        display: none;
+      }
+      
+      @media (min-width: 768px) {
+        .md\:block {
+          display: block;
+        }
+        
+        .md\:hidden {
+          display: none;
+        }
+      }
+      
+      .bg-mesh {
+        background-image: radial-gradient(hsla(var(--gamer-neon), 0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
+      }
+      
+      .bg-gradient {
+        background: linear-gradient(to bottom, hsl(var(--gamer-dark)), hsl(var(--background)));
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold gamer-gradient animate-pulse-glow">Yagame</h1>
+          </div>
+          <nav class="hidden md:block">
+            <ul>
+              <li><a href="#sobre">Sobre</a></li>
+              <li><a href="#interesses">Interesses</a></li>
+              <li><a href="#formacao">Formação</a></li>
+            </ul>
+          </nav>
+          <div class="hidden md:block">
+            <a href="#contato" class="btn btn-outline">Contato</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-mesh"></div>
+        
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-text">
+              <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                <span class="gamer-gradient animate-pulse-glow">Yagame</span>
+              </h1>
+              <h2 class="text-2xl md:text-3xl opacity-70 mb-4">Desenvolvedor & Gamer</h2>
+              <p class="text-lg opacity-70 mb-8">
+                Explorando os limites entre games e desenvolvimento de software desde 2017.
+              </p>
+              <div class="flex gap-4">
+                <a href="#interesses" class="btn btn-primary">
+                  Conheça meu trabalho
+                </a>
+                <a href="#contato" class="btn btn-outline">
+                  Contato
+                </a>
+              </div>
+            </div>
+            
+            <div class="profile-img animate-float">
+              <div class="profile-img-container">
+                <img 
+                  src="https://i.pinimg.com/736x/1c/2b/68/1c2b687c2f329a63a2130d370e129bf0.jpg" 
+                  alt="Yagame" 
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="sobre" class="py-20 relative">
+        <div class="bg-mesh absolute inset-0"></div>
+        <div class="container relative">
+          <div class="section-title">
+            <h2 class="text-3xl md:text-4xl font-bold gamer-gradient">Quem é Yagame?</h2>
+            <div class="section-title-line"></div>
+          </div>
+          
+          <div class="card">
+            <p class="text-lg mb-6">
+              Yagame é um nome que carrego desde 2017/2018, quando comecei a me interessar pelo cenário competitivo 
+              dos jogos da época, como Rainbow Six (R6), Fortnite, Counter-Strike (CS), Call of Duty, entre outros.
+            </p>
+            <p class="text-lg mb-6">
+              Com o tempo, esse interesse foi além da gameplay. Sempre fui curioso para entender como esses jogos 
+              funcionavam por trás das telas. Isso me levou a estudar desde engenharia reversa — usada na criação 
+              dos famosos cheats — até o desenvolvimento frontend, que envolve toda a parte visual de sites e 
+              aplicativos com os quais os usuários interagem. Também explorei o backend, responsável pelo 
+              armazenamento de dados e comunicação com o frontend.
+            </p>
+            <p class="text-lg">
+              Atualmente, estou cursando o ensino médio e também participo de um curso técnico em Análise e 
+              Desenvolvimento de Sistemas (ADS).
+              Depois de tudo isso, acho que você já tem uma boa ideia de quem é Yagame.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interests Section -->
+      <section id="interesses" class="py-20 bg-gradient">
+        <div class="container">
+          <div class="section-title">
+            <h2 class="text-3xl md:text-4xl font-bold gamer-gradient">Interesses & Habilidades</h2>
+            <div class="section-title-line"></div>
+          </div>
+          
+          <div class="grid grid-3">
+            <div class="card">
+              <div class="interest-icon">🖥️</div>
+              <h3 class="text-xl font-bold mb-2">Desenvolvimento Frontend</h3>
+              <p class="opacity-70">Criação de interfaces modernas e responsivas utilizando tecnologias como React, TypeScript e Tailwind CSS.</p>
+            </div>
+            
+            <div class="card">
+              <div class="interest-icon">⚙️</div>
+              <h3 class="text-xl font-bold mb-2">Desenvolvimento Backend</h3>
+              <p class="opacity-70">Implementação de servidores, APIs e bancos de dados para dar vida às aplicações.</p>
+            </div>
+            
+            <div class="card">
+              <div class="interest-icon">🎮</div>
+              <h3 class="text-xl font-bold mb-2">Games Competitivos</h3>
+              <p class="opacity-70">Participação ativa no cenário de jogos competitivos como Rainbow Six, CS e outros FPS táticos.</p>
+            </div>
+            
+            <div class="card">
+              <div class="interest-icon">🔍</div>
+              <h3 class="text-xl font-bold mb-2">Engenharia Reversa</h3>
+              <p class="opacity-70">Exploração de como os sistemas funcionam internamente, analisando e compreendendo seu funcionamento.</p>
+            </div>
+            
+            <div class="card">
+              <div class="interest-icon">📱</div>
+              <h3 class="text-xl font-bold mb-2">Desenvolvimento de Sistemas</h3>
+              <p class="opacity-70">Criação de soluções completas, desde a concepção até a implementação.</p>
+            </div>
+            
+            <div class="card">
+              <div class="interest-icon">📚</div>
+              <h3 class="text-xl font-bold mb-2">Aprendizado Contínuo</h3>
+              <p class="opacity-70">Sempre em busca de novos conhecimentos e tecnologias para expandir meus horizontes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education Section -->
+      <section id="formacao" class="py-20 relative">
+        <div class="bg-mesh absolute inset-0"></div>
+        <div class="container relative">
+          <div class="section-title">
+            <h2 class="text-3xl md:text-4xl font-bold gamer-gradient">Formação Acadêmica</h2>
+            <div class="section-title-line"></div>
+          </div>
+          
+          <div class="timeline">
+            <div class="card">
+              <div class="flex items-center mb-4">
+                <div class="icon-container" style="background-color: hsla(var(--gamer-neon), 0.1);">
+                  <span class="text-2xl" style="color: hsl(var(--gamer-neon));">📚</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold">Ensino Médio</h3>
+                  <p class="opacity-70">Em andamento</p>
+                </div>
+              </div>
+              <p class="opacity-80">
+                Atualmente cursando o ensino médio, focado em construir uma base sólida de conhecimentos gerais.
+              </p>
+            </div>
+            
+            <div class="timeline-connector">
+              <div class="timeline-connector-line" style="background-color: hsla(var(--gamer-neon), 0.3);"></div>
+            </div>
+            
+            <div class="card">
+              <div class="flex items-center mb-4">
+                <div class="icon-container" style="background-color: hsla(var(--gamer-purple), 0.1);">
+                  <span class="text-2xl" style="color: hsl(var(--gamer-purple));">💻</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold">Curso Técnico em Análise e Desenvolvimento de Sistemas</h3>
+                  <p class="opacity-70">Em andamento</p>
+                </div>
+              </div>
+              <p class="opacity-80">
+                Formação técnica em ADS que abrange diversos aspectos do desenvolvimento de software, 
+                desde a concepção até a implementação e manutenção de sistemas.
+              </p>
+            </div>
+            
+            <div class="timeline-connector">
+              <div class="timeline-connector-line" style="background-color: hsla(var(--gamer-purple), 0.3);"></div>
+            </div>
+            
+            <div class="card">
+              <div class="flex items-center mb-4">
+                <div class="icon-container" style="background-color: hsla(196, 100%, 50%, 0.1);">
+                  <span class="text-2xl" style="color: hsl(196, 100%, 50%);">🎯</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold">Aprendizado Autodidata</h3>
+                  <p class="opacity-70">Contínuo desde 2017</p>
+                </div>
+              </div>
+              <p class="opacity-80">
+                Além da educação formal, desenvolvo constantemente minhas habilidades através de estudos autodidatas
+                em desenvolvimento web, engenharia de software, design de interfaces e engenharia reversa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <h3 class="text-2xl font-bold gamer-gradient">Yagame</h3>
+            <p class="opacity-70 mt-2">Desenvolvedor & Gamer</p>
+          </div>
+          
+          <div class="footer-links">
+            <div>
+              <h4 class="text-lg font-semibold mb-3">Links</h4>
+              <ul class="space-y-2">
+                <li><a href="#sobre" class="opacity-70 hover:text-[hsl(var(--gamer-neon))]">Sobre</a></li>
+                <li><a href="#interesses" class="opacity-70 hover:text-[hsl(var(--gamer-neon))]">Interesses</a></li>
+                <li><a href="#formacao" class="opacity-70 hover:text-[hsl(var(--gamer-neon))]">Formação</a></li>
+              </ul>
+            </div>
+            
+            <div id="contato">
+              <h4 class="text-lg font-semibold mb-3">Contato</h4>
+              <ul class="space-y-2">
+                <li class="opacity-70">Email: yagameedit@gmail.com</li>
+                <li class="opacity-70">Discord: yagame</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-copyright">
+          <p class="opacity-50 text-sm">© <script>document.write(new Date().getFullYear())</script> Yagame. Todos os direitos reservados.</p>
+          <p class="opacity-50 text-sm">Desenvolvedor & Gamer desde 2017</p>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80, // Offset for header
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
